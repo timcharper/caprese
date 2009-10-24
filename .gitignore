@@ -1,2 +1,3 @@
 config/quit_applications.yml
 config/block_domains.yml
+config/launch_applications.yml
