@@ -1,2 +1,2 @@
-config/applications.yml
-config/domains.yml
+config/quit_applications.yml
+config/block_domains.yml

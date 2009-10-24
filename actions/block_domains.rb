@@ -10,7 +10,7 @@ class BlockDomains
   end
   
   def self.config
-    YAML.load_file(CONFIG_PATH + "domains.yml")
+    YAML.load_file(CONFIG_PATH + "block_domains.yml")
   end
 end
 

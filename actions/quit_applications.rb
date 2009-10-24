@@ -1,7 +1,7 @@
 class QuitApplications
   class << self
     def config
-      @config ||= YAML.load_file(CONFIG_PATH + "applications.yml")
+      @config ||= YAML.load_file(CONFIG_PATH + "quit_applications.yml")
     end
     
     def each_target_app
