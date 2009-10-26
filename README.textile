@@ -1,19 +1,60 @@
-h1. Pomodoro app
+h1. Caprese
+
+Caprese (pronounced ca-PRAY-zay) is a helper app for the "Mac OS X Pomodoro App":http://pomodoro.ugolandini.com/Mac by Ugo Landini.  It provides an easy-to-configure suite of actions that can be executed and unexecuted when your Pomodoro starts and stops.  Actions include:
+
+* Set adium status for all accounts
+* Announce pomodoro status to campfire
+* Launch applications, hiding all other windows
+* Quit applications
+* Block applications
+* Block domains (blocks by IP using the Mac OS X firewall)
 
 h2. sudo access
 
-I recommend putting this in /var/pomodoro, chowning it as root, and giving yourself NOPASSWD sudo access to it by adding these lines to your sudoers file (edit it with visudo!)
+I recommend putting this in /var/caprese, chowning it as root, and giving yourself NOPASSWD sudo access to it by adding these lines to your sudoers file (edit it with visudo!)
 
-  %admin  ALL=PASSWD: ALL, NOPASSWD: /opt/pomodoro/start.rb, /opt/pomodoro/stop.rb
+  %admin  ALL=PASSWD: ALL, NOPASSWD: /opt/caprese/caprese, /opt/caprese/caprese
 
-h2. Pomodoro.app
+If you opt out of sudo, Block domains will not work, and block applications may not work (depending on your permissions).
+
+h2. Gem dependencies
+
+Use <code>sudo geminstaller</code> to make sure you have the needed gems. Also, you will want to make sure that you are using your System-supplied version of ruby, and not your custom built version, as Mac OS X will likely ignore your path settings and pick the System-supplied.
+
+I recommend:
+
+<pre>
+  cd path_to_caprese
+  sudo /usr/bin/gem install geminstaller
+  sudo /usr/bin/geminstaller
+</pre>
+
+h2. Configure
+
+copy <code>/opt/caprese/config.rb.sample</code> to <code>/opt/caprese/config.rb</code>.  This is how you can configure the various actions.
+
+h2. Test
+
+Test out your configuration in the command line by running
+
+<pre>
+  sudo env POMODORO_DESCRIPTION="test description" /opt/caprese/caprese start
+
+  sudo env POMODORO_DESCRIPTION="test description" /opt/caprese/caprese stop
+</pre>
+
+h2. Integrating with Pomodoro.app
 
 Go to the config -> applescript.
 
-Put this in start:
+Put this in "start" :
 
-  do shell script "sudo env POMODORO_DESCRIPTION=\"$pomodoroName\" POMODORO_DURATION=$duration /opt/pomodoro/pomodoro.rb start"
+<pre>
+  do shell script "sudo env POMODORO_DESCRIPTION=\"$pomodoroName\" POMODORO_DURATION=$duration /opt/caprese/caprese start"
+</pre>
 
-Put this in reset and end:
+Put this in "reset" and "end" :
 
-  do shell script "sudo /opt/pomodoro/pomodoro.rb stop"
+<pre>
+  do shell script "sudo /opt/caprese/caprese stop"
+</pre>
