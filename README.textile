@@ -12,8 +12,8 @@ Go to the config -> applescript.
 
 Put this in start:
 
-  do shell script "sudo /opt/pomodoro/engage.rb \"$pomodoroName\" $duration"
+  do shell script "sudo env POMODORO_NAME=\"$pomodoroName\" POMODORO_DURATION=$duration /opt/pomodoro/pomodoro.rb engage"
 
 Put this in reset and end:
 
-  do shell script "sudo /opt/pomodoro/disengage.rb"
+  do shell script "sudo /opt/pomodoro/pomodoro.rb disengage"
