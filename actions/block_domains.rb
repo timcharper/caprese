@@ -1,27 +1,25 @@
-class BlockDomains
-  def self.engage
-    config.each do |target_domain|
-      Domain.new(target_domain).block
+class BlockDomains < PomodoroAction
+  config_schema({String => Object})
+
+  def engage
+    config.each do |target_domain, ips|
+      Domain.new(target_domain, ips).block
     end
   end
   
-  def self.disengage
+  def disengage
     IPFW.clear
-  end
-  
-  def self.config
-    YAML.load_file(CONFIG_PATH + "block_domains.yml")
   end
 end
 
 class Domain
-  def initialize(config)
-    @name = config["domain"]
-    @config = config
+  def initialize(name, ips = nil)
+    @name = name
+    @ips = ips
   end
   
   def ips
-    @config['ips'] || resolve_ips
+    @ips ||= resolve_ips
   end
   
   def resolve_ips

@@ -1,14 +1,12 @@
-class LaunchApplications
-  def self.config
-    YAML.load_file(CONFIG_PATH + "launch_applications.yml")
+class LaunchApplications < PomodoroAction
+  config_schema [String]
+  
+  def engage
+    Application.hide_all
+    config.each { |app_name| Application.new(app_name).activate! }
   end
   
-  def self.engage
-    app("System Events").processes[(its.visible.eq(true))].visible.set(false)
-    config.each { |app_name| app(app_name).activate }
-  end
-  
-  def self.disengage
+  def disengage
   end
   
 end

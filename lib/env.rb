@@ -15,9 +15,6 @@ class String
   end
 end
 
-include Appscript
-
 (Dir[ACTIONS_PATH + "*"] + Dir[LIB_PATH + "*"]).each do |path|
   Object.autoload(File.basename(path, ".rb").classify.to_sym, path)
 end
-

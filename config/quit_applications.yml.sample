@@ -1,4 +1,0 @@
-- name: iTunes
-  block: false
-- name: GMail
-  block: true

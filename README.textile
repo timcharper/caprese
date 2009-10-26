@@ -12,7 +12,7 @@ Go to the config -> applescript.
 
 Put this in start:
 
-  do shell script "sudo /opt/pomodoro/engage.rb"
+  do shell script "sudo /opt/pomodoro/engage.rb \"$pomodoroName\" $duration"
 
 Put this in reset and end:
 

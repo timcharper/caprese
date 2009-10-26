@@ -1,0 +1,45 @@
+BlockDomains(
+  'youtube.com' => %w[
+    72.14.213.100
+    72.14.213.101
+    72.14.213.102
+    72.14.213.113
+    72.14.213.138
+    72.14.213.139
+    74.125.127.100
+    74.125.127.101
+    74.125.127.102
+    74.125.127.113
+    74.125.127.138
+    74.125.127.139
+    74.125.45.100
+    74.125.67.100
+    72.14.213.138
+  ],
+  "facebook.com" => %w[
+    69.63.181.0/24
+    69.63.184.0/24
+    69.63.186.0/24
+    69.63.187.0/24
+  ],
+  "myspace.com" => nil,
+  "twitter.com" => %w[
+    128.121.146.0/24
+    168.143.162.0/24
+  ],
+  "vimeo.com" => nil,
+  "veoh.com" => nil,
+  "linkedin.com" => nil,
+  "plurk.com" => nil,
+  "bebo.com" => nil,
+  "yelp.com" => nil
+)
+
+LaunchApplications "Campfire", "Pivotal Tracker", "Ruby Docs (and others)", "TextMate"
+QuitApplications   "Google Calendar", "Remember the Milk", "Preview"
+BlockApplications  "GMail", "Google Reader", "Google Voice", "Colloquy", "Mail", "TweetDeck"
+
+AdiumStatus(
+  :away => "Pomodoro! Ends at #{(Time.now + 25*60).strftime('%I:%M %p').gsub(/^0/, '')}",
+  :available => "Available"
+)
