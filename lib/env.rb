@@ -15,6 +15,12 @@ class String
   end
 end
 
+class Time
+  def to_short_time
+    strftime('%I:%M %p').gsub(/^0/, '')
+  end
+end
+
 (Dir[ACTIONS_PATH + "*"] + Dir[LIB_PATH + "*"]).each do |path|
   Object.autoload(File.basename(path, ".rb").classify.to_sym, path)
 end

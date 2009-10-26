@@ -40,6 +40,6 @@ QuitApplications   "Google Calendar", "Remember the Milk", "Preview"
 BlockApplications  "GMail", "Google Reader", "Google Voice", "Colloquy", "Mail", "TweetDeck"
 
 AdiumStatus(
-  :away => "Pomodoro! Ends at #{(Time.now + 25*60).strftime('%I:%M %p').gsub(/^0/, '')}",
+  :away => "Pomodoro! Ends at #{stop_time.to_short_time}",
   :available => "Available"
 )

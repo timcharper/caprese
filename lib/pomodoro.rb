@@ -40,6 +40,14 @@ class Pomodoro
     end
   end
 
+  def self.start_time
+    Time.now
+  end
+
+  def self.stop_time
+    (Time.now + (ENV['POMODORO_DURATION'] || 25).to_i * 60)
+  end
+
   def self.description
     ENV["POMODORO_DESCRIPTION"] || "Pomodoro"
   end
