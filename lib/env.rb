@@ -5,6 +5,7 @@ require 'pp'
 
 require 'pathname'
 APP_PATH = Pathname.new(File.expand_path("..", File.dirname(__FILE__)))
+APP_NAME = "Caprese"
 LIB_PATH = APP_PATH + "lib"
 ACTIONS_PATH = APP_PATH + "actions"
 CONFIG_PATH = APP_PATH + "config"

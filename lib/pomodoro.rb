@@ -21,14 +21,18 @@ class Pomodoro
     ENV["POMODORO_DESCRIPTION"] ||= "Pomodoro"
     ENV["POMODORO_DURATION"] ||= "25"
 
-    each_configured_action do |action, args|
-      Object.const_get(action).new(args).start
+    with_growl_notification("start") do
+      each_configured_action do |action, args|
+        Object.const_get(action).new(args).start
+      end
     end
   end
   
   def self.stop
-    each_configured_action do |action, args|
-      Object.const_get(action).new(args).stop
+    with_growl_notification("stop") do
+      each_configured_action do |action, args|
+        Object.const_get(action).new(args).stop
+      end
     end
   end
 
@@ -51,4 +55,16 @@ class Pomodoro
   def self.description
     ENV["POMODORO_DESCRIPTION"] || "Pomodoro"
   end
+
+  private
+    def self.with_growl_notification(kind, &block)
+      begin
+        yield
+        GrowlHelper.growl("#{APP_NAME} success!", "All #{kind} actions were executed successfully")
+      rescue Exception => e
+        GrowlHelper.growl("#{APP_NAME} error", "Not all #{kind} actions were completed because this happened:\n#{e.message}")
+        raise(e)
+      end
+    end
+
 end
