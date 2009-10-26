@@ -17,9 +17,9 @@ class Pomodoro
     end
   end
   
-  def self.engage
-    $pomodoroName = ARGV[1] || "Pomodoro"
-    $duration = (ARGV[2] || 25).to_i
+  def self.engage(*args)
+    $pomodoroName = args[1] || "Pomodoro"
+    $duration = (args[2] || 25).to_i
 
     each_configured_action do |action, args|
       Object.const_get(action).new(args).engage
