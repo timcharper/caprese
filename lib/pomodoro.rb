@@ -18,7 +18,7 @@ class Pomodoro
   end
   
   def self.start
-    ENV["POMODORO_DESCRIPTION"] ||= "Pomodoro"
+    ENV["POMODORO_DESCRIPTION"]
     ENV["POMODORO_DURATION"] ||= "25"
 
     with_growl_notification("start") do
@@ -53,7 +53,7 @@ class Pomodoro
   end
 
   def self.description
-    ENV["POMODORO_DESCRIPTION"] || "Pomodoro"
+    ENV["POMODORO_DESCRIPTION"]
   end
 
   private
