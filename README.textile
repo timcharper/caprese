@@ -12,7 +12,7 @@ Go to the config -> applescript.
 
 Put this in start:
 
-  do shell script "sudo env POMODORO_NAME=\"$pomodoroName\" POMODORO_DURATION=$duration /opt/pomodoro/pomodoro.rb start"
+  do shell script "sudo env POMODORO_DESCRIPTION=\"$pomodoroName\" POMODORO_DURATION=$duration /opt/pomodoro/pomodoro.rb start"
 
 Put this in reset and end:
 

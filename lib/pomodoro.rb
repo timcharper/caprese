@@ -18,7 +18,7 @@ class Pomodoro
   end
   
   def self.start
-    ENV["POMODORO_NAME"] ||= "Pomodoro"
+    ENV["POMODORO_DESCRIPTION"] ||= "Pomodoro"
     ENV["POMODORO_DURATION"] ||= "25"
 
     each_configured_action do |action, args|
@@ -38,5 +38,9 @@ class Pomodoro
     else
       super
     end
+  end
+
+  def self.description
+    ENV["POMODORO_DESCRIPTION"] || "Pomodoro"
   end
 end
