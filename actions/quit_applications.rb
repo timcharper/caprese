@@ -7,7 +7,7 @@ class QuitApplications < PomodoroAction
     end
   end
 
-  def engage
+  def start
     each_target_app do |application|
       application.quit! if application.running?
     end

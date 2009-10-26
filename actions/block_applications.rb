@@ -1,12 +1,12 @@
 class BlockApplications < QuitApplications
-  def engage
+  def start
     super
     each_target_app do |application|
       application.block!
     end
   end
 
-  def disengage
+  def stop
     each_target_app do |application|
       application.unblock!
     end

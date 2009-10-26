@@ -1,13 +1,13 @@
 class BlockDomains < PomodoroAction
   config_schema({String => Object})
 
-  def engage
+  def start
     config.each do |target_domain, ips|
       Domain.new(target_domain, ips).block
     end
   end
   
-  def disengage
+  def stop
     IPFW.clear
   end
 end

@@ -31,9 +31,9 @@ class PomodoroAction
     end
   end
 
-  def engage
+  def start
   end
 
-  def disengage
+  def stop
   end
 end

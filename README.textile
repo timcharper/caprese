@@ -4,7 +4,7 @@ h2. sudo access
 
 I recommend putting this in /var/pomodoro, chowning it as root, and giving yourself NOPASSWD sudo access to it by adding these lines to your sudoers file (edit it with visudo!)
 
-  %admin  ALL=PASSWD: ALL, NOPASSWD: /opt/pomodoro/engage.rb, /opt/pomodoro/disengage.rb
+  %admin  ALL=PASSWD: ALL, NOPASSWD: /opt/pomodoro/start.rb, /opt/pomodoro/stop.rb
 
 h2. Pomodoro.app
 
@@ -12,8 +12,8 @@ Go to the config -> applescript.
 
 Put this in start:
 
-  do shell script "sudo env POMODORO_NAME=\"$pomodoroName\" POMODORO_DURATION=$duration /opt/pomodoro/pomodoro.rb engage"
+  do shell script "sudo env POMODORO_NAME=\"$pomodoroName\" POMODORO_DURATION=$duration /opt/pomodoro/pomodoro.rb start"
 
 Put this in reset and end:
 
-  do shell script "sudo /opt/pomodoro/pomodoro.rb disengage"
+  do shell script "sudo /opt/pomodoro/pomodoro.rb stop"

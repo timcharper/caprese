@@ -4,8 +4,8 @@ require File.dirname(__FILE__) + '/lib/env.rb'
 action = ARGV.shift
 
 case action
-when "engage" then Pomodoro.engage
-when "disengage" then Pomodoro.disengage
+when "start" then Pomodoro.start
+when "stop" then Pomodoro.stop
 else
   puts "Unknown action #{action}"
 end

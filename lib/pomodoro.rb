@@ -17,18 +17,18 @@ class Pomodoro
     end
   end
   
-  def self.engage
+  def self.start
     ENV["POMODORO_NAME"] ||= "Pomodoro"
     ENV["POMODORO_DURATION"] ||= "25"
 
     each_configured_action do |action, args|
-      Object.const_get(action).new(args).engage
+      Object.const_get(action).new(args).start
     end
   end
   
-  def self.disengage
+  def self.stop
     each_configured_action do |action, args|
-      Object.const_get(action).new(args).disengage
+      Object.const_get(action).new(args).stop
     end
   end
 
