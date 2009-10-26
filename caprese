@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require File.dirname(__FILE__) + '/lib/env.rb'
 
+ArgParser.extract_env_variables(ARGV)
 action = ARGV.shift
 
 case action

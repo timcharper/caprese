@@ -18,9 +18,6 @@ class Pomodoro
   end
   
   def self.start
-    ENV["POMODORO_DESCRIPTION"]
-    ENV["POMODORO_DURATION"] ||= "25"
-
     with_growl_notification("start") do
       each_configured_action do |action, args|
         Object.const_get(action).new(args).start

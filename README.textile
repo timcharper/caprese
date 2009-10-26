@@ -38,9 +38,9 @@ h2. Test
 Test out your configuration in the command line by running
 
 <pre>
-  sudo env POMODORO_DESCRIPTION="test description" /opt/caprese/caprese start
+  sudo /opt/caprese/caprese start POMODORO_DESCRIPTION="test description"
 
-  sudo env POMODORO_DESCRIPTION="test description" /opt/caprese/caprese stop
+  sudo /opt/caprese/caprese stop
 </pre>
 
 h2. Integrating with Pomodoro.app
@@ -50,7 +50,7 @@ Go to the config -> applescript.
 Put this in "start" :
 
 <pre>
-  do shell script "sudo env POMODORO_DESCRIPTION=\"$pomodoroName\" POMODORO_DURATION=$duration /opt/caprese/caprese start"
+  do shell script "sudo /opt/caprese/caprese start POMODORO_DESCRIPTION=\"$pomodoroName\" POMODORO_DURATION=$duration"
 </pre>
 
 Put this in "reset" and "end" :

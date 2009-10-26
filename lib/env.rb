@@ -25,3 +25,19 @@ end
 (Dir[ACTIONS_PATH + "*"] + Dir[LIB_PATH + "*"]).each do |path|
   Object.autoload(File.basename(path, ".rb").classify.to_sym, path)
 end
+
+class ArgParser
+  def self.extract_env_variables(args = ARGV)
+    i = 0
+    while ARGV[i]
+      if ARGV[i].match(/^([A-Z_]+)=(.+)$/)
+        ENV[$1] = $2
+        ARGV.delete_at(i)
+        ARGV.length
+      else
+        i += 1
+      end
+    end
+    args
+  end
+end
