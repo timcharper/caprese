@@ -37,6 +37,7 @@ class PomodoroAction
     errors.clear
     @valid = true
     validate_schema
+    @valid
   end
 
   def config=(config)

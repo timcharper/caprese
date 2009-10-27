@@ -1,12 +1,11 @@
 class LaunchApplications < PomodoroAction
-  config_schema [String]
+  include ApplicationAction
   
   def start
     Application.hide_all
-    config.each { |app_name| Application.new(app_name).activate! }
+    target_apps.each { |app| app.activate! }
   end
   
   def stop
   end
-  
 end

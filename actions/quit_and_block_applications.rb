@@ -1,13 +1,15 @@
-class QuitAndBlockApplications < QuitApplications
+class QuitAndBlockApplications < PomodoroAction
+  include ApplicationAction
+
   def start
-    super
-    each_target_app do |application|
+    target_apps.each do |application|
+      application.quit! if application.running?
       application.block!
     end
   end
 
   def stop
-    each_target_app do |application|
+    target_apps.each do |application|
       application.unblock!
     end
   end

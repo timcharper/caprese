@@ -1,14 +1,8 @@
 class QuitApplications < PomodoroAction
-  config_schema [String]
-  
-  def each_target_app
-    config.each do |app_config|
-      yield(Application.new(app_config))
-    end
-  end
+  include ApplicationAction
 
   def start
-    each_target_app do |application|
+    target_apps.each do |application|
       application.quit! if application.running?
     end
   end

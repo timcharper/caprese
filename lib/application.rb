@@ -2,6 +2,7 @@ class Application
   include Appscript
   extend Appscript
 
+  attr_reader :name
   def initialize(name)
     @name = name
   end
@@ -41,5 +42,9 @@ class Application
 
   def self.hide_all
     app("System Events").processes[(its.visible.eq(true))].visible.set(false)
+  end
+
+  def exists?
+    File.exists?(path)
   end
 end
