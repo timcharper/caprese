@@ -4,9 +4,14 @@ require File.dirname(__FILE__) + '/lib/env.rb'
 ArgParser.extract_env_variables(ARGV)
 action = ARGV.shift
 
-case action
-when "start" then Pomodoro.start
-when "stop" then Pomodoro.stop
+Actions = {
+  "start"        => lambda { Pomodoro.start },
+  "stop"         => lambda { Pomodoro.stop },
+  "check-config" => lambda { Pomodoro.check_config && puts("Configuration is valid") }
+}
+
+if action && Actions[action]
+  Actions[action].call
 else
-  puts "Unknown action #{action}"
+  puts "Usage: #{$0} [#{Actions.keys.sort.join '|'}] [ENV_VARIABLE=VALUE ...]"
 end

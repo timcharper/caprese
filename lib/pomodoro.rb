@@ -10,27 +10,34 @@ class Pomodoro
     @config || load_config
   end
 
-  def self.each_configured_action
-    config.each do |action_args|
+  def self.actions
+    config.map do |action_args|
       action, args = action_args
-      yield action, args
+      Object.const_get(action).new(args)
     end
   end
   
   def self.start
     with_growl_notification("start") do
-      each_configured_action do |action, args|
-        Object.const_get(action).new(args).start
-      end
+      actions.each { |action| action.start }
     end
   end
   
   def self.stop
     with_growl_notification("stop") do
-      each_configured_action do |action, args|
-        Object.const_get(action).new(args).stop
-      end
+      actions.each { |action| action.stop }
     end
+  end
+
+  def self.check_config
+    valid = true
+    actions.each do |action|
+      next if action.valid?
+      puts "#{action.class} has errors:"
+      puts "- " + (action.errors * "\n- ")
+      valid = false
+    end
+    valid
   end
 
   def self.method_missing(method, *args)
