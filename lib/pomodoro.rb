@@ -18,6 +18,12 @@ class Pomodoro
   end
   
   def self.start
+    unless actions_with_errors.empty?
+      errors = actions_with_errors.map {|a| "#{a.class}:\n" + format_errors(a.errors) }.join("\n")
+      GrowlHelper.growl("#{APP_NAME} config has errors", "Run #{$0} check-config to see all.\n\n#{errors}")
+      return false
+    end
+
     with_growl_notification("start") do
       actions.each { |action| action.start }
     end
@@ -30,14 +36,12 @@ class Pomodoro
   end
 
   def self.check_config
-    valid = true
-    actions.each do |action|
-      next if action.valid?
-      puts "#{action.class} has errors:"
-      puts "- " + (action.errors * "\n- ")
-      valid = false
+    return true if actions_with_errors.empty?
+
+    actions_with_errors.each do |action|
+      puts "#{action.class} has errors:\n#{format_errors(action.errors)}"
     end
-    valid
+    false
   end
 
   def self.method_missing(method, *args)
@@ -71,4 +75,11 @@ class Pomodoro
       end
     end
 
+    def self.format_errors(errors)
+      "- " + (errors * "\n- ")
+    end
+
+    def self.actions_with_errors
+      @actions_with_errors ||= actions.select { |a| not a.valid? }
+    end
 end
