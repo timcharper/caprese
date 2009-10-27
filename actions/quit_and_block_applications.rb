@@ -1,4 +1,4 @@
-class BlockApplications < QuitApplications
+class QuitAndBlockApplications < QuitApplications
   def start
     super
     each_target_app do |application|

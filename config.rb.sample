@@ -36,7 +36,7 @@ BlockDomains(
 )
 
 LaunchApplications "Campfire", "Pivotal Tracker", "Ruby Docs (and others)", "TextMate"
-QuitApplications   "Google Calendar", "Remember the Milk", "Preview"
+QuitAndBlockApplications   "Google Calendar", "Remember the Milk", "Preview"
 BlockApplications  "GMail", "Google Reader", "Google Voice", "Colloquy", "Mail", "TweetDeck"
 
 AdiumStatus(
