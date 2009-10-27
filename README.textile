@@ -59,6 +59,8 @@ Put this in "reset" and "end" :
   do shell script "sudo /opt/caprese/caprese stop"
 </pre>
 
+Be sure to check the checkboxes next to "start", "reset", and "end" to tell Pomodoro.app to actually execute those scripts.
+
 h2. Credits
 
 * Developed by Tim Harper of Lead Media Partners.
