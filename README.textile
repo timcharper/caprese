@@ -13,7 +13,7 @@ h2. sudo access
 
 I recommend putting this in /var/caprese, chowning it as root, and giving yourself NOPASSWD sudo access to it by adding these lines to your sudoers file (edit it with visudo!)
 
-  %admin  ALL=PASSWD: ALL, NOPASSWD: /opt/caprese/caprese, /opt/caprese/caprese
+  %admin  ALL=PASSWD: ALL, NOPASSWD: /opt/caprese/caprese
 
 If you opt out of sudo, Block domains will not work, and block applications may not work (depending on your permissions).
 
@@ -58,3 +58,9 @@ Put this in "reset" and "end" :
 <pre>
   do shell script "sudo /opt/caprese/caprese stop"
 </pre>
+
+h2. Credits
+
+* Developed by Tim Harper of Lead Media Partners.
+* HAS for rb-appscript and ASTranslate, invaluable tools that made this possible
+* Alan Whitaker for the name
