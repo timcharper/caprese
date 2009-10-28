@@ -11,7 +11,7 @@ Caprese (pronounced ca-PRAY-zay) is a helper app for the "Mac OS X Pomodoro App"
 
 h2. sudo access
 
-I recommend putting this in /var/caprese, chowning it as root, and giving yourself NOPASSWD sudo access to it by adding these lines to your sudoers file (edit it with visudo!)
+I recommend putting this in /opt/caprese, chowning it as root, and giving yourself NOPASSWD sudo access to it by adding these lines to your sudoers file (edit it with visudo!)
 
   %admin  ALL=PASSWD: ALL, NOPASSWD: /opt/caprese/caprese
 
