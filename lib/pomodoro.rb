@@ -1,20 +1,10 @@
 class Pomodoro
-  def self.load_config
-    @config = []
-    config_file = APP_PATH + 'config.rb'
-    eval(File.read(config_file), binding, config_file, 1)
-    @config
-  end
-
   def self.config
-    @config || load_config
+    @config = CapreseConfigurator.new
   end
 
   def self.actions
-    config.map do |action_args|
-      action, args = action_args
-      Object.const_get(action).new(args)
-    end
+    config.actions
   end
   
   def self.start
@@ -42,26 +32,6 @@ class Pomodoro
       puts "#{action.class} has errors:\n#{format_errors(action.errors)}"
     end
     false
-  end
-
-  def self.method_missing(method, *args)
-    if /[A-Z]/.match(method.to_s) && Object.const_defined?(method) && Object.const_get(method).ancestors.include?(PomodoroAction)
-      @config << [method, args]
-    else
-      super
-    end
-  end
-
-  def self.start_time
-    Time.now
-  end
-
-  def self.stop_time
-    (Time.now + (ENV['POMODORO_DURATION'] || 25).to_i * 60)
-  end
-
-  def self.description
-    ENV["POMODORO_DESCRIPTION"]
   end
 
   private
