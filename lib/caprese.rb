@@ -1,4 +1,4 @@
-class Pomodoro
+class Caprese
   def self.config
     @config = CapreseConfigurator.new
   end
@@ -6,7 +6,7 @@ class Pomodoro
   def self.actions
     config.actions
   end
-  
+
   def self.start
     unless actions_with_errors.empty?
       errors = actions_with_errors.map {|a| "#{a.class}:\n" + format_errors(a.errors) }.join("\n")
@@ -18,7 +18,7 @@ class Pomodoro
       actions.each { |action| action.start }
     end
   end
-  
+
   def self.stop
     with_growl_notification("stop") do
       actions.each { |action| action.stop }

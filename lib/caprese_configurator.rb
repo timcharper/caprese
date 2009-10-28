@@ -21,7 +21,7 @@ class CapreseConfigurator
   end
 
   def method_missing(method, *args)
-    if /[A-Z]/.match(method.to_s) && Object.const_defined?(method) && Object.const_get(method).ancestors.include?(PomodoroAction)
+    if /[A-Z]/.match(method.to_s) && Object.const_defined?(method) && Object.const_get(method).ancestors.include?(CapreseAction)
       @config << [method, args]
     else
       super

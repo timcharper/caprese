@@ -1,4 +1,4 @@
-class QuitAndBlockApplications < PomodoroAction
+class QuitAndBlockApplications < CapreseAction
   include ApplicationAction
 
   def start

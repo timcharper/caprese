@@ -1,4 +1,4 @@
-class PomodoroAction
+class CapreseAction
   attr_reader :config
 
   def initialize(config)

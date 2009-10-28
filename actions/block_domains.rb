@@ -1,4 +1,4 @@
-class BlockDomains < PomodoroAction
+class BlockDomains < CapreseAction
   config_schema({String => Object})
 
   def start

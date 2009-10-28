@@ -1,10 +1,10 @@
 require File.expand_path("spec_helper", File.dirname(__FILE__))
 
-describe PomodoroAction do
+describe CapreseAction do
   describe ".config_schema" do
     context "[String]" do
       before(:each) do
-        @klass = Class.new(PomodoroAction) do
+        @klass = Class.new(CapreseAction) do
           config_schema [String]
         end
       end
@@ -20,7 +20,7 @@ describe PomodoroAction do
 
     context "{...}" do
       before(:each) do
-        @klass = Class.new(PomodoroAction) do
+        @klass = Class.new(CapreseAction) do
           config_schema({String => Object})
         end
       end
@@ -38,7 +38,7 @@ describe PomodoroAction do
   describe "#validate" do
     context "schema is [String]" do
       before(:each) do
-        @klass = Class.new(PomodoroAction) do
+        @klass = Class.new(CapreseAction) do
           config_schema [String]
         end
       end
@@ -52,7 +52,7 @@ describe PomodoroAction do
 
     context "schema is {String => String}" do
       before(:each) do
-        @klass = Class.new(PomodoroAction) do
+        @klass = Class.new(CapreseAction) do
           config_schema({String => String})
         end
       end
@@ -78,7 +78,7 @@ describe PomodoroAction do
 
     context "schema is {:message => String, :credentials => {:name => String, :pass => String}}" do
       before(:each) do
-        @klass = Class.new(PomodoroAction) do
+        @klass = Class.new(CapreseAction) do
           config_schema({:message => String, :credentials => {:name => String, :pass => String}})
         end
       end

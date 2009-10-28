@@ -1,4 +1,4 @@
-class AdiumStatus < PomodoroAction
+class AdiumStatus < CapreseAction
   include Appscript
   
   config_schema({:away => String, :available => String})

@@ -1,4 +1,4 @@
-class LaunchApplications < PomodoroAction
+class LaunchApplications < CapreseAction
   include ApplicationAction
   
   def start

@@ -1,6 +1,6 @@
 require 'tinder'
 
-class Campfire < PomodoroAction
+class Campfire < CapreseAction
   config_schema({:start_message => String, :stop_message => String, :campfire => {:domain => String, :room => String, :login => String, :pass => String}})
 
   def campfire_config
