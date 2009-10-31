@@ -1,6 +1,6 @@
 class Caprese
   def self.config
-    @config = CapreseConfigurator.new
+    @config ||= CapreseConfigurator.new
   end
 
   def self.actions
