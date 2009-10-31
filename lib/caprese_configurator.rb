@@ -8,8 +8,7 @@ class CapreseConfigurator
 
   def load_config
     @config = []
-    config_file = APP_PATH + 'config.rb'
-    eval(File.read(config_file), binding, config_file, 1)
+    load(APP_PATH + 'config.rb')
     @config
   end
 
@@ -19,6 +18,12 @@ class CapreseConfigurator
       Object.const_get(action).new(args)
     end
   end
+
+  def load(file)
+    eval(File.read(file), binding, file, 1)
+  end
+
+  alias require load
 
   def method_missing(method, *args)
     if /[A-Z]/.match(method.to_s) && Object.const_defined?(method) && Object.const_get(method).ancestors.include?(CapreseAction)
