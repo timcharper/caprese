@@ -72,15 +72,12 @@ This clears sudo timestamp so sudo will begin prompting for a password again.
   sudo /opt/caprese/caprese start POMODORO_DESCRIPTION="test description"
 </pre>
 
-*you should have seen no password prompt*: If you did, something went wrong in Step
-2.  To diagnose:
+*You should have seen no password prompt*. If you did, something went wrong in <b>Step 2</b>.  To diagnose:
 
 * Check to make sure your user is apart of the admin group
 * make sure no other config lines conflict.
 
-*If you saw a configuration error*, follow the instructions shown. If it was a
-ruby parse error, you probably forgot to close a parenthesis pair, forgot a
-command, put in an extra command, etc.
+*If you saw a configuration error*, follow the instructions shown. If it was a ruby parse error, you probably forgot to close a parenthesis pair, forgot a command, put in an extra command, etc.
 
 -------
 
@@ -96,8 +93,7 @@ This command should have undid everything the start command did
   sudo ls -l /root
 </pre>
 
-This should've prompted you for a password. If it doesn't, your sudoers change
-was to permissive, or you'd given free rain to 'ls' previously.
+This should've prompted you for a password. If it doesn't, your sudoers change was to permissive, or you'd given free rain to 'ls' previously.
 
 h3. Step 6: Integrating with Pomodoro.app
 
@@ -105,8 +101,7 @@ Go to the config -> applescript.
 
 Check the checkboxes next to "*start*", "*reset*", and "*end*" to tell <code>Pomodoro.app</code> to actually execute those scripts.
 
-Put this in "*start*" (copy, delete all text in box, then right click and choose
-paste) :
+Put this in "*start*" (copy, delete all text in box, then right click and choose paste) :
 
 <pre>
   do shell script "sudo /opt/caprese/caprese start POMODORO_DESCRIPTION=\"$pomodoroName\" POMODORO_DURATION=$duration"
@@ -120,12 +115,10 @@ Put this in "*reset*" and "*end*" similarly :
 
 h3. Step 7: Profit!
 
-The setup has a lot of steps, sorry about that. Caprese will growl an error
-message at you if one of the commands errored out. Please report any bugs
-"here":http://github.com/timcharper/caprese/issues.
+The setup has a lot of steps, sorry about that. Caprese will growl an error message at you if one of the commands errored out. Please report any bugs "here":http://github.com/timcharper/caprese/issues.
 
 h2. Credits
 
-* Developed by Tim Harper of Lead Media Partners.
+* Developed by Tim Harper of "Lead Media Partners":http://www.leadmediapartners.com/.
 * HAS for rb-appscript and ASTranslate, invaluable tools that made this possible
 * Alan Whitaker for the name
