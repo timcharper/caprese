@@ -1,6 +1,6 @@
 h1. Caprese
 
-Caprese (pronounced ca-PRAY-zay) is a helper app for the "Mac OS X Pomodoro App":http://pomodoro.ugolandini.com/Mac by Ugo Landini.  It provides an easy-to-configure suite of actions that can be executed and unexecuted when your Pomodoro starts and stops.  Actions include:
+"Caprese":http://github.com/timcharper/caprese (pronounced ca-PRAY-zay) is a helper app for the "Mac OS X Pomodoro App":http://pomodoro.ugolandini.com/Mac by Ugo Landini.  It provides an easy-to-configure suite of actions that can be executed and unexecuted when your Pomodoro starts and stops.  Actions include:
 
 * Set adium status for all accounts
 * Announce pomodoro status to campfire
@@ -103,7 +103,7 @@ h3. Step 6: Integrating with Pomodoro.app
 
 Go to the config -> applescript.
 
-Check the checkboxes next to "*start*", "*reset*", and "*end*" to tell Pomodoro.app to actually execute those scripts.
+Check the checkboxes next to "*start*", "*reset*", and "*end*" to tell <code>Pomodoro.app</code> to actually execute those scripts.
 
 Put this in "*start*" (copy, delete all text in box, then right click and choose
 paste) :
@@ -121,8 +121,8 @@ Put this in "*reset*" and "*end*" similarly :
 h3. Step 7: Profit!
 
 The setup has a lot of steps, sorry about that. Caprese will growl an error
-message at you if one of the commands errored out. Please report any bugs at
-http://github.com/timcharper/caprese/issues
+message at you if one of the commands errored out. Please report any bugs
+"here":http://github.com/timcharper/caprese/issues.
 
 h2. Credits
 
