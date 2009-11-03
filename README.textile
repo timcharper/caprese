@@ -9,15 +9,34 @@ Caprese (pronounced ca-PRAY-zay) is a helper app for the "Mac OS X Pomodoro App"
 * Block applications
 * Block domains (blocks by IP using the Mac OS X firewall)
 
-h2. sudo access
+h2. Installation
 
-I recommend putting this in /opt/caprese, chowning it as root, and giving yourself NOPASSWD sudo access to it by adding these lines to your sudoers file (edit it with visudo!)
+h3. Step 1: Download and install caprese
+
+Caprese requires root access and should be installed in /opt/caprese, owned as root.
+
+*Option 1*: download a release file from github (see http://github.com/timcharper/caprese/downloads), and unzip it to /opt/caprese. If the folder <code>/opt/caprese/lib</code> exists, you've done it right.
+
+*Option 2*: clone the git repository and run edge. updates are as easy a 'git pull'.
+
+<pre>
+  sudo su -
+  # type password
+  cd /opt
+  git clone git://github.com/timcharper/caprese.git
+</pre>
+
+If you prefer not to run caprese with root privileges, many features are still available without it. Install caprese to any folder and skip the "sudo access section".  Domain blocking and application blocking are likely not work.
+
+h3. Step 2: grant password free sudo access to /opt/caprese/caprese
+
+Make it so you can run <code>sudo /opt/caprese/caprese</code> without supplying a password.  I can't guarantee that this will be 100% safe to do, but if you make sure that only root has access to write or create any file in /opt/caprese, I don't foresee any security threat.
+
+Edit your sudoers file by running <code>visudo</code> as root, and put these lines at the bottom of the file:
 
   %admin  ALL=PASSWD: ALL, NOPASSWD: /opt/caprese/caprese
 
-If you opt out of sudo, Block domains will not work, and block applications may not work (depending on your permissions).
-
-h2. Gem dependencies
+h3. Step 3: Gem dependencies
 
 Use <code>sudo geminstaller</code> to make sure you have the needed gems. Also, you will want to make sure that you are using your System-supplied version of ruby, and not your custom built version, as Mac OS X will likely ignore your path settings and pick the System-supplied.
 
@@ -29,37 +48,62 @@ I recommend:
   sudo /usr/bin/geminstaller
 </pre>
 
-h2. Configure
+h3. Step 4: Configure
 
-copy <code>/opt/caprese/config.rb.sample</code> to <code>/opt/caprese/config.rb</code>.  This is how you can configure the various actions.
+copy <code>/opt/caprese/config.rb.sample</code> to <code>/opt/caprese/config.rb</code>, and then edit it with your favorite text editor.  The config file should be self-explanatory.
 
-h2. Test
+h3. Step 5: Test
 
-Test out your configuration in the command line by running
+As your user (NOT ROOT!), run:
 
 <pre>
+  # clear the sudo timestamp so sudo will begin prompting for a password again.
+
+  sudo -k
+
+  # when you run this command, the sudoers file change (Step 2) should make it
+  # so you DONT see a password prompt.  If you do, then something went wrong in
+  # step 2.  To diagnose:
+  #
+  # * Check to make sure your user is apart of the admin group
+  # * make sure no other config lines conflict.
+
   sudo /opt/caprese/caprese start POMODORO_DESCRIPTION="test description"
 
+  # This should undo everything the start command did
+
   sudo /opt/caprese/caprese stop
+
+  # This should prompt you for a password. If it doesn't, your sudoers change
+  # was to permissive, or you'd given free rain to 'ls' previously.
+
+  sudo ls -l /root
 </pre>
 
-h2. Integrating with Pomodoro.app
+h3. Step 6: Integrating with Pomodoro.app
 
 Go to the config -> applescript.
 
-Put this in "start" :
+Check the checkboxes next to "start", "reset", and "end" to tell Pomodoro.app to actually execute those scripts.
+
+Put this in "start" (copy, delete all text in box, then right click and choose
+paste) :
 
 <pre>
   do shell script "sudo /opt/caprese/caprese start POMODORO_DESCRIPTION=\"$pomodoroName\" POMODORO_DURATION=$duration"
 </pre>
 
-Put this in "reset" and "end" :
+Put this in "reset" and "end" similarly :
 
 <pre>
   do shell script "sudo /opt/caprese/caprese stop"
 </pre>
 
-Be sure to check the checkboxes next to "start", "reset", and "end" to tell Pomodoro.app to actually execute those scripts.
+h3. Step 7: Profit!
+
+The setup has a lot of steps, sorry about that. Caprese will growl an error
+message at you if one of the commands errored out. Please report any bugs at
+http://github.com/timcharper/caprese/issues
 
 h2. Credits
 
