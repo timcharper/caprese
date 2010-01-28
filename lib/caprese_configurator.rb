@@ -8,7 +8,7 @@ class CapreseConfigurator
 
   def load_config
     @config = []
-    load(APP_PATH + 'config.rb')
+    load('config.rb')
     @config
   end
 
@@ -20,6 +20,7 @@ class CapreseConfigurator
   end
 
   def load(file)
+    file = File.expand_path(file, APP_PATH)
     eval(File.read(file), binding, file, 1)
   end
 
