@@ -1,7 +1,11 @@
+gem 'tinder', ">= 1.3.1"
+gem "activesupport", ">= 2.3.4"
+
 require 'tinder'
+require "active_support"
 
 class Campfire < CapreseAction
-  config_schema({:start_message => String, :stop_message => String, :campfire => {:domain => String, :room => String, :login => String, :pass => String}})
+  config_schema({:start_message => String, :stop_message => String, :campfire => {:ssl => Boolean, :domain => String, :room => String, :token => String}})
 
   def campfire_config
     config[:campfire]
@@ -9,8 +13,8 @@ class Campfire < CapreseAction
 
   def campfire
     @campfire ||= (
-      campfire = Tinder::Campfire.new(campfire_config[:domain], :ssl => true)
-      campfire.login(campfire_config[:login], campfire_config[:pass])
+      campfire = Tinder::Campfire.new(campfire_config[:domain], :ssl => campfire_config[:ssl])
+      campfire.login(campfire_config[:token], "x")
       campfire
     )
   end
@@ -20,14 +24,15 @@ class Campfire < CapreseAction
   end
 
   def speak(message)
+    message.html_safe!
     room.speak(message)
   end
 
   def start
-    room.speak config[:start_message]
+    speak config[:start_message]
   end
 
   def stop
-    room.speak config[:stop_message]
+    speak config[:stop_message]
   end
 end

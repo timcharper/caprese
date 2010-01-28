@@ -1,3 +1,5 @@
+class Boolean; end
+
 class CapreseAction
   attr_reader :config
 
@@ -61,7 +63,7 @@ class CapreseAction
           key_expectation, value_expectation = schema.keys.first, schema.values.first
           @config.each do |key, value|
             add_error("key #{key.inspect} expected to be of type #{key_expectation}, but is of type #{key.class}") unless key.is_a?(key_expectation)
-            add_error("value #{value.inspect} expected to be of type #{value_expectation}, but is of type #{value.class}") unless value.is_a?(value_expectation)
+            validate_value(value, value_expectation)
           end
         else
           validate_hash(@config, schema)
@@ -83,6 +85,15 @@ class CapreseAction
       end
     end
 
+    def validate_value(value, expectation)
+      case expectation.name
+      when "Boolean"
+        add_error("key #{key.inspect} expects a value of type #{expectation}, but you provided #{value.inspect} of type #{value.class}") unless [nil, true, false].include?(value)
+      else
+        add_error("key #{key.inspect} expects a value of type #{expectation}, but you provided #{value.inspect} of type #{value.class}") unless value.is_a?(expectation)
+      end
+    end
+
     def validate_hash(input, expectation)
       input.each do |key, value|
         next add_error("Unexpected key #{key.inspect} provided. Valid keys here are [#{expectation.keys.map {|k| k.inspect }.sort * ', '}]") unless expectation.has_key?(key)
@@ -91,7 +102,7 @@ class CapreseAction
           next add_error("key #{key.inspect} expects a nested Hash of values, but you provided #{value.inspect}") unless value.is_a?(Hash)
           validate_hash(value, expectation[key])
         when expectation[key].is_a?(Class)
-          add_error("key #{key.inspect} expects a value of type #{expectation[key]}, but you provided #{value.inspect} of type #{value.class}") unless value.is_a?(expectation[key])
+          validate_value(value, expectation[key])
         else
           puts "Invalid schema: #{expectation[key]}"
         end
