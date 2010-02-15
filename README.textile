@@ -11,6 +11,11 @@ h1. Caprese
 
 h2. Installation
 
+h3.  Prerequisites
+
+* A Ruby interpreter, 1.8.6 or greater
+* XCode Mac developer tools (required to install Ruby/AppleScript interop support)
+
 h3. Step 1: Download and install caprese
 
 Caprese requires root access and should be installed in /opt/caprese, owned as root.
