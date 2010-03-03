@@ -2,6 +2,7 @@ h1. Caprese
 
 "Caprese":http://github.com/timcharper/caprese (pronounced ca-PRAY-zay) is a helper app for the "Mac OS X Pomodoro App":http://pomodoro.ugolandini.com/Mac by Ugo Landini.  It provides an easy-to-configure suite of actions that can be executed and unexecuted when your Pomodoro starts and stops.  Actions include:
 
+* Set iChat status for all accounts
 * Set adium status for all accounts
 * Announce pomodoro status to campfire
 * Launch applications, hiding all other windows
