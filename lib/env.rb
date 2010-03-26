@@ -4,6 +4,8 @@ require 'yaml'
 require 'pp'
 
 require 'pathname'
+require "fileutils"
+
 APP_PATH = Pathname.new(File.expand_path("..", File.dirname(__FILE__)))
 APP_NAME = "Caprese"
 LIB_PATH = APP_PATH + "lib"
