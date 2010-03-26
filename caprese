@@ -5,9 +5,9 @@ ArgParser.extract_env_variables(ARGV)
 action = ARGV.shift
 
 Actions = {
-  "start"        => lambda { Caprese.start },
-  "stop"         => lambda { Caprese.stop },
-  "check-config" => lambda { Caprese.check_config && puts("Configuration is valid") }
+  "start" => lambda { Caprese.start },
+  "stop"  => lambda { Caprese.stop },
+  "check" => lambda { Caprese.check_config && puts("Configuration is valid") }
 }
 
 if action && Actions[action]
