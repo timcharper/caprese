@@ -1,5 +1,5 @@
 class Application
-  STANDARD_APP_PATHS = ["/Applications", "/Applications/Utilities", File.join(ENV["HOME"], "applications")] + ENV["APP_PATHS"].to_s.split(":")
+  STANDARD_APP_PATHS = ENV["APPS_PATH"].to_s.split(":") + ["/Applications", "/Applications/Utilities", File.join(ENV["HOME"], "applications")]
 
   include Appscript
   extend Appscript
