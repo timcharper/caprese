@@ -5,7 +5,6 @@ class CapreseAction
 
   def initialize(config)
     self.config = config
-    @valid = true
   end
 
   def self.config_schema(schema)
@@ -25,6 +24,7 @@ class CapreseAction
   end
 
   def valid?
+    return @valid if defined?(@valid)
     validate
     @valid
   end

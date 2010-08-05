@@ -10,7 +10,7 @@ class Caprese
   def self.start
     unless actions_with_errors.empty?
       errors = actions_with_errors.map {|a| "#{a.class}:\n" + format_errors(a.errors) }.join("\n")
-      GrowlHelper.growl("#{APP_NAME} config has errors", "Run #{$0} check-config to see all.\n\n#{errors}")
+      GrowlHelper.growl("#{APP_NAME} config has errors", "Run #{$0} check to see all.\n\n#{errors}")
       return false
     end
 

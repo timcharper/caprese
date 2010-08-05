@@ -47,4 +47,8 @@ class Application
   def exists?
     File.exists?(path)
   end
+
+  def to_s
+    name
+  end
 end
