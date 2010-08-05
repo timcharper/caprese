@@ -70,9 +70,9 @@ describe CapreseAction do
       end
 
       it "fails if all values aren't strings" do
-        action = @klass.new({"a" => :a, "b" => "2"})
+        action = @klass.new({"a" => :value, "b" => "2"})
         action.should_not be_valid
-        action.errors.should include("value :a expected to be of type String, but is of type Symbol")
+        action.errors.should include("key \"a\" expects a value of type String, but you provided :value of type Symbol")
       end
     end
 
