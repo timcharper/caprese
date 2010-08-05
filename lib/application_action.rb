@@ -13,7 +13,7 @@ module ApplicationAction
     return unless super
 
     target_apps.each do |application|
-      add_error("I can't find application #{application.name} installed in #{application.path}") unless application.exists?
+      add_error("I can't find application #{application.name} installed in #{application.path_candidates.inspect}") unless application.exists?
     end
   end
 end

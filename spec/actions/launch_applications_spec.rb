@@ -5,7 +5,7 @@ describe LaunchApplications do
     it "is invalid if a non-existing application is provided" do
       action = LaunchApplications.new(["System Preferences", "Jooky - Party in a Can"])
       action.should_not be_valid
-      action.errors.should include("I can't find application Jooky - Party in a Can installed in /Applications/Jooky - Party in a Can.app")
+      action.errors.first.should include("I can't find application Jooky - Party in a Can installed in")
     end
 
     it "is valid if provided applications exist" do

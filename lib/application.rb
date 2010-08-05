@@ -1,4 +1,6 @@
 class Application
+  STANDARD_APP_PATHS = ["/Applications", "/Applications/Utilities", File.join(ENV["HOME"], "applications")] + ENV["APP_PATHS"].to_s.split(":")
+
   include Appscript
   extend Appscript
 
@@ -24,8 +26,15 @@ class Application
     @handle ||= app(@name)
   end
 
+  def path_candidates
+    STANDARD_APP_PATHS.map { |app_path| File.join(app_path, "#{@name}.app") }
+  end
+
   def path
-    "/Applications/#{@name}.app"
+    @path ||=
+      path_candidates.
+      select {|p| File.exist?(p)}.
+      first
   end
 
   def execpath
@@ -45,7 +54,7 @@ class Application
   end
 
   def exists?
-    File.exists?(path)
+    ! path.nil?
   end
 
   def to_s
