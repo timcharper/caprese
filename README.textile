@@ -75,7 +75,7 @@ This clears sudo timestamp so sudo will begin prompting for a password again.
 -------
 
 <pre>
-  sudo /opt/caprese/caprese start POMODORO_DESCRIPTION="test description"
+  sudo /opt/caprese/caprese start DESCRIPTION="test description"
 </pre>
 
 *You should have seen no password prompt*. If you did, something went wrong in <b>Step 2</b>.  To diagnose:
@@ -110,7 +110,7 @@ Check the checkboxes next to "*start*", "*reset*", and "*end*" to tell <code>Pom
 Put this in "*start*" (copy, delete all text in box, then right click and choose paste) :
 
 <pre>
-  do shell script "sudo /opt/caprese/caprese start POMODORO_DESCRIPTION=\"$pomodoroName\" POMODORO_DURATION=$duration"
+  do shell script "sudo /opt/caprese/caprese start DESCRIPTION=\"$pomodoroName\" DURATION=$duration"
 </pre>
 
 Put this in "*reset*" and "*end*" similarly :
