@@ -4,6 +4,7 @@ h1. Caprese
 
 * Set iChat status for all accounts
 * Set adium status for all accounts
+* Set skype status
 * Announce pomodoro status to campfire
 * Launch applications, hiding all other windows
 * Quit applications
