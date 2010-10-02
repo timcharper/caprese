@@ -49,6 +49,11 @@ IchatStatus(
   :available => "Available"
 )
 
+SkypeStatus(
+  :away => "Pomodoro! Ends at #{stop_time.to_short_time}",
+  :available => "Available"
+)
+
 Campfire(
   :start_message => %(< #{MY_NAME} started "#{description}": #{start_time.to_short_time} - #{stop_time.to_short_time} >),
   :stop_message =>  "< #{MY_NAME} ended >",
