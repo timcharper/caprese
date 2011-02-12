@@ -38,6 +38,7 @@ BlockDomains(
 LaunchApplications "Campfire", "Pivotal Tracker", "Ruby Docs (and others)", "TextMate"
 QuitApplications   "Google Calendar", "Remember the Milk", "Preview"
 QuitAndBlockApplications  "GMail", "Google Reader", "Google Voice", "Colloquy", "Mail", "TweetDeck"
+Terminal           "cd Code;git pull"
 
 AdiumStatus(
   :away => "Pomodoro! Ends at #{stop_time.to_short_time}",
