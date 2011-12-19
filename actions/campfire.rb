@@ -26,7 +26,7 @@ class Campfire < CapreseAction
   end
 
   def speak(message)
-    message.html_safe!
+    message.respond_to?(html_safe!) && message.html_safe! || message
     room.speak(message)
   end
 
