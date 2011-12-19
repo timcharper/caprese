@@ -1,4 +1,4 @@
-gem 'tinder', ">= 1.3.1"
+gem 'tinder', "= 1.8.0"
 gem "activesupport", ">= 2.3.4"
 
 require 'tinder'
@@ -13,9 +13,11 @@ class Campfire < CapreseAction
 
   def campfire
     @campfire ||= (
-      campfire = Tinder::Campfire.new(campfire_config[:domain], :ssl => campfire_config[:ssl])
-      campfire.login(campfire_config[:token], "x")
-      campfire
+      campfire = Tinder::Campfire.new(campfire_config[:domain], campfire_config[:token])
+      # Use old-style username and password
+      # campfire = Tinder::Campfire.new(campfire_config[:domain],
+      #                                 :username => campfire_config[:username],
+      #                                 :password => campfire_config[:password])
     )
   end
 
